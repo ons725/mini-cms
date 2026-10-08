@@ -28,3 +28,10 @@ Route::get('/heure', function () {
         'date' => now()->format('d/m/Y'),
     ]);
 });
+
+Route::get('/a-propos', function () {
+    return view('a-propos', [
+        'auteur' => 'Ons Maraghni',
+        'groupe' => 'MDW32',
+    ]);
+});
