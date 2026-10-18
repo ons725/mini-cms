@@ -6,11 +6,13 @@ Auteur : Ons Maraghni, groupe MDW32.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
-## État actuel (tag lab-01b)
 
-- Routes en closures : `/`, `/bonjour`, `/bonjour-court`, `/bienvenue`, `/version`, `/heure` et `/a-propos`.
-- Vues Blade : `bienvenue`, `heure` et `a-propos`.
-- Base de données SQLite locale (`database/database.sqlite`, non versionnée).
+## État actuel (tag lab-02b)
+
+- Pages construites avec des composants Blade anonymes : `x-navbar`, `x-nav-link`, `x-post-card`, `x-alert`, `x-page-header`.
+- Lien actif dans la navigation avec `request()->routeIs()`.
+- Articles toujours stockés dans un tableau PHP, sans base de données pour l'instant.
+
 
 ## Routes disponibles
 
@@ -50,3 +52,7 @@ composer run dev
 ![Liste des articles](screenshots/s03-articles.png)
 
 ![Détail d'un article](screenshots/s03-article.png)dir screenshots
+
+### Session 04
+
+![Liste des articles](screenshots/s04-articles.png)
