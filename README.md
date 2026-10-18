@@ -44,3 +44,9 @@ php artisan key:generate
 touch database/database.sqlite
 php artisan migrate
 composer run dev
+
+![Page d'accueil avec le layout](screenshots/s03-accueil.png)
+
+![Liste des articles](screenshots/s03-articles.png)
+
+![Détail d'un article](screenshots/s03-article.png)dir screenshots
