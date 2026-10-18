@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\PageController;
@@ -5,10 +6,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-
 Route::get('/a-propos', [PageController::class, 'about'])->name('about');
-
-
 Route::get('/heure', [PageController::class, 'time'])->name('time');
 
 Route::prefix('posts')->name('posts.')->group(function () {
@@ -19,6 +17,6 @@ Route::prefix('posts')->name('posts.')->group(function () {
         ->name('archive');
 
     Route::get('/{slug}', [PostController::class, 'show'])
-        ->where('slug', '^(?!archive$)[a-z0-9-]+$')
+        ->where('slug', '[a-z0-9-]+')
         ->name('show');
 });
