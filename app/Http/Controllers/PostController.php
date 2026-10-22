@@ -56,10 +56,6 @@ public function store(Request $request): RedirectResponse
         return view('posts.show', compact('post'));
     }
 
-    public function destroy(Post $post)
-    {
-        //
-    }
     public function edit(Post $post): View
 {
     return view('posts.edit', compact('post'));
@@ -91,4 +87,11 @@ public function update(Request $request, Post $post): RedirectResponse
 
     return redirect()->route('posts.show', $post);
 }
+public function destroy(Post $post): RedirectResponse
+{
+    $post->delete();
+
+    return redirect()->route('posts.index');
+}
+
 }
