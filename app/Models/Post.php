@@ -1,27 +1,29 @@
-
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
 {
-    public function up(): void
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'is_published',
+        'published_at',
+    ];
+
+    public function getRouteKeyName(): string
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('body');
-            $table->boolean('is_published')->default(false);
-            $table->timestamp('published_at')->nullable();
-            $table->timestamps();
-        });
+        return 'slug';
     }
 
-    public function down(): void
+    protected function casts(): array
     {
-        Schema::dropIfExists('posts');
+        return [
+            'is_published' => 'boolean',
+            'published_at' => 'datetime',
+        ];
     }
-};
+}

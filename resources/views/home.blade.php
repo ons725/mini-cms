@@ -18,3 +18,16 @@
         Les composants Blade évitent de recopier le même code HTML dans chaque page.
     </x-alert>
 </x-layout>
+<h2 class="text-2xl font-bold mt-8 mb-4">
+    Derniers articles publiés
+</h2>
+
+<div class="grid gap-6 md:grid-cols-2">
+    @forelse ($latestPosts as $post)
+        <x-post-card :post="$post" />
+    @empty
+        <x-alert type="info" title="Aucun article publié">
+            Aucun article publié pour le moment.
+        </x-alert>
+    @endforelse
+</div>
