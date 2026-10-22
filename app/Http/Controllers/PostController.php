@@ -17,17 +17,16 @@ class PostController extends Controller
             'posts' => Post::latest('id')->paginate(4),
         ]);
     }
-
-    public function archive(string $year): View
-    {
-        return view('posts.index', [
-            'heading' => 'Articles de '.$year,
-            'posts' => Post::whereYear('published_at', $year)
-                ->latest('id')
-                ->paginate(4),
-        ]);
-    }
-
+public function archive(string $year): View
+{
+    return view('posts.index', [
+        'heading' => 'Articles de '.$year,
+        'posts' => Post::published()
+            ->whereYear('published_at', $year)
+            ->latest('id')
+            ->paginate(4),
+    ]);
+}
    public function create(): View
 {
     return view('posts.create');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -9,15 +10,11 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
+        'excerpt',
         'body',
         'is_published',
         'published_at',
     ];
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 
     protected function casts(): array
     {
@@ -26,4 +23,14 @@ class Post extends Model
             'published_at' => 'datetime',
         ];
     }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('is_published', true);
+    }
+
+    public function getRouteKeyName(): string
+{
+    return 'slug';
+}
 }
