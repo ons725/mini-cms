@@ -7,5 +7,21 @@
         <x-nav-link to="posts.index" match="posts.*">Articles</x-nav-link>
         <x-nav-link to="time">Heure</x-nav-link>
         <x-nav-link to="about">À propos</x-nav-link>
+
+        
+@guest
+    <a href="{{ route('login') }}">Connexion</a>
+    <a href="{{ route('register') }}">Inscription</a>
+@endguest
+
+@auth
+    <a href="{{ route('dashboard') }}">Dashboard</a>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">Déconnexion</button>
+    </form>
+@endauth
+
     </nav>
 </header>
