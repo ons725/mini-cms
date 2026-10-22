@@ -80,3 +80,37 @@ Pour exécuter les tests automatisés :
 
 ```bash
 php artisan test
+
+## Session 06 — Gestion complète des articles
+
+### Fonctionnalités
+- Création d'articles avec validation des champs.
+- Modification des articles existants.
+- Suppression avec confirmation.
+- Gestion du titre, du slug, de l'extrait et du contenu.
+- Publication ou conservation en brouillon.
+- Filtrage des articles publiés avec le scope `published`.
+- Pagination des archives par année.
+
+### Tests automatisés
+Le fichier `tests/Feature/PostWriteTest.php` couvre :
+- La création d'un article.
+- La validation du titre obligatoire.
+- L'affichage du formulaire de modification.
+- La modification d'un article et la conservation de son slug.
+- Le refus d'un slug déjà utilisé.
+- La suppression d'un article.
+
+### Technologies
+- Laravel
+- PHP
+- SQLite
+- Blade
+- Pest
+
+### Commandes utiles
+```bash
+php artisan serve
+php artisan test
+php artisan route:list --name=posts
+```
