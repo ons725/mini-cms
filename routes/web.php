@@ -1,16 +1,20 @@
-
 <?php
 
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/a-propos', [PageController::class, 'about'])->name('about');
-Route::get('/heure', [PageController::class, 'time'])->name('time');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/posts/archive/{year}', [PostController::class, 'archive'])
-    ->whereNumber('year')
-    ->name('posts.archive');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('posts', PostController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
