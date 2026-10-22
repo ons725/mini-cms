@@ -7,10 +7,13 @@ Auteur : Ons Maraghni, groupe MDW32.
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
 
-## État actuel (tag lab-02b)
+## État actuel (tag lab-03)
 
 - Pages construites avec des composants Blade anonymes : `x-navbar`, `x-nav-link`, `x-post-card`, `x-alert`, `x-page-header`.
-- Lien actif dans la navigation avec `request()->routeIs()`.
+- Articles enregistrés dans une base SQLite et manipulés avec le modèle Eloquent `Post`.
+- Liste des articles paginée et page de détail d'un article.
+- Formulaire de création avec validation côté serveur.
+- Premiers tests automatisés avec Pest.
 - Articles toujours stockés dans un tableau PHP, sans base de données pour l'instant.
 
 
@@ -32,6 +35,7 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 - Node.js LTS et npm.
 - Git.
 
+
 ## Installation
 
 ### Bash (Git Bash, macOS, Linux)
@@ -46,13 +50,33 @@ php artisan key:generate
 touch database/database.sqlite
 php artisan migrate
 composer run dev
+```
 
 ![Page d'accueil avec le layout](screenshots/s03-accueil.png)
 
 ![Liste des articles](screenshots/s03-articles.png)
 
-![Détail d'un article](screenshots/s03-article.png)dir screenshots
+![Détail d'un article](screenshots/s03-article.png)
 
 ### Session 04
 
 ![Liste des articles](screenshots/s04-articles.png)
+## Routes de la Session 05
+
+| Méthode | URI | Nom |
+|---|---|---|
+| GET | `/` | `home` |
+| GET | `/heure` | `time` |
+| GET | `/a-propos` | `about` |
+| GET | `/posts` | `posts.index` |
+| GET | `/posts/archive/{year}` | `posts.archive` |
+| GET | `/posts/create` | `posts.create` |
+| POST | `/posts` | `posts.store` |
+| GET | `/posts/{post}` | `posts.show` |
+
+## Tests
+
+Pour exécuter les tests automatisés :
+
+```bash
+php artisan test
