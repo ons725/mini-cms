@@ -23,8 +23,8 @@ Route::get('/posts/archive/{year}', [PostController::class, 'archive'])
 Route::resource('posts', PostController::class)
     ->only(['index', 'show']);
 
-// Gestion des articles : utilisateur connecté uniquement
-Route::middleware('auth')->group(function () {
+// Gestion des articles : administrateur uniquement
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('posts', PostController::class)
         ->except(['index', 'show']);
 });
