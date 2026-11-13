@@ -14,17 +14,14 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'heading' => 'Tous les articles',
-            'posts' => Post::latest('id')->paginate(4),
+            'posts' => Post::with('user', 'category', 'tags')->latest('id')->paginate(4),
         ]);
     }
 public function archive(string $year): View
 {
     return view('posts.index', [
         'heading' => 'Articles de '.$year,
-        'posts' => Post::published()
-            ->whereYear('published_at', $year)
-            ->latest('id')
-            ->paginate(4),
+        'posts' => Post::published()->with('user', 'category', 'tags')->whereYear('published_at', $year)->latest('id')->paginate(4),
     ]);
 }
    public function create(): View
@@ -52,6 +49,8 @@ public function store(Request $request): RedirectResponse
 
     public function show(Post $post): View
     {
+        $post->load('user', 'category', 'tags');
+
         return view('posts.show', compact('post'));
     }
 
