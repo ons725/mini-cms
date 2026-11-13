@@ -44,7 +44,10 @@ test('un article inconnu retourne une erreur 404', function () {
 });
 
 test('le formulaire de creation est accessible', function () {
-    $this->get(route('posts.create'))
+    $admin = \App\Models\User::factory()->admin()->create();
+
+    $this->actingAs($admin)
+        ->get(route('posts.create'))
         ->assertOk()
         ->assertSee('title')
         ->assertSee('slug');
